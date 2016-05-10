@@ -20,6 +20,8 @@ var CommentForm = React.createClass({
       author: this.state.author, 
       text:this.state.text
     });
+    
+    this.setState({author:"", text:""});
   },
 
 

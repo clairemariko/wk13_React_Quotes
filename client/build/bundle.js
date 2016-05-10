@@ -48,11 +48,9 @@
 	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var CommentBox = __webpack_require__(160);
+	var CommentBox = __webpack_require__(159);
 	
-	{
-	  /this starts the framework, it should typically be at the bottom of the script and it should only be called after the components have been defined./;
-	}
+	// {/this starts the framework, it should typically be at the bottom of the script and it should only be called after the components have been defined./}
 	
 	window.onload = function () {
 	  ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('app'));
@@ -19667,21 +19665,18 @@
 
 
 /***/ },
-/* 159 */,
-/* 160 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var CommentList = __webpack_require__(161);
+	var CommentList = __webpack_require__(160);
 	var CommentForm = __webpack_require__(162);
 	
 	var sampleData = [{ id: 1, author: 'Rick', text: 'cool' }, { id: 2, author: 'Keith', text: 'howdy' }, { id: 3, author: 'Beth', text: 'heey' }];
 	
-	{
-	  /The React.createClass has various methods we can pass to it such as the render which is important and this returns a tree of React components/;
-	}
+	// {/The React.createClass has various methods we can pass to it such as the render which is important and this returns a tree of React components/}
 	var CommentBox = React.createClass({
 	  displayName: 'CommentBox',
 	
@@ -19704,7 +19699,6 @@
 	        null,
 	        'Hello I am the comment box.'
 	      ),
-	      /We have made these in the commentform and commentlist so we can now use these new components/,
 	      React.createElement(CommentList, { data: this.state.data }),
 	      React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit })
 	    );
@@ -19714,17 +19708,15 @@
 	module.exports = CommentBox;
 
 /***/ },
-/* 161 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var Comment = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Comment\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var Comment = __webpack_require__(161);
 	
-	{
-	  /not sure how this is working, so it is taking in the data from Comment and returning the autho and the key. it is making it more dynamic rather than takin in sample data. /;
-	}
+	// {/not sure how this is working, so it is taking in the data from Comment and returning the autho and the key. it is making it more dynamic rather than takin in sample data. / }
 	
 	var CommentList = React.createClass({
 	  displayName: 'CommentList',
@@ -19747,6 +19739,44 @@
 	});
 	
 	module.exports = CommentList;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var Comment = React.createClass({
+	  displayName: 'Comment',
+	
+	
+	  // {/Comments will depend on the data from it parent. Data passed from its parent is known as 'property' on the child component. Data passed from it parent is known as 'propert' on the child component./}
+	
+	  // {/We access named attributes passed to the component as keys on [this.props] and any nest element as [this.props.children] ??? not sure about this.props.children/}
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        this.props.author
+	      ),
+	      this.props.children,
+	      React.createElement(
+	        'button',
+	        null,
+	        ' delete '
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = Comment;
 
 /***/ },
 /* 162 */
@@ -19778,6 +19808,8 @@
 	      author: this.state.author,
 	      text: this.state.text
 	    });
+	
+	    this.setState({ author: "", text: "" });
 	  },
 	
 	  render: function render() {
