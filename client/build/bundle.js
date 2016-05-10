@@ -50,6 +50,10 @@
 	var ReactDOM = __webpack_require__(158);
 	var CommentBox = __webpack_require__(160);
 	
+	{
+	  /this starts the framework, it should typically be at the bottom of the script and it should only be called after the components have been defined./;
+	}
+	
 	window.onload = function () {
 	  ReactDOM.render(React.createElement(CommentBox, null), document.getElementById('app'));
 	};
@@ -19675,6 +19679,9 @@
 	
 	var sampleData = [{ id: 1, author: 'Rick', text: 'cool' }, { id: 2, author: 'Keith', text: 'howdy' }, { id: 3, author: 'Beth', text: 'heey' }];
 	
+	{
+	  /The React.createClass has various methods we can pass to it such as the render which is important and this returns a tree of React components/;
+	}
 	var CommentBox = React.createClass({
 	  displayName: 'CommentBox',
 	
@@ -19697,6 +19704,7 @@
 	        null,
 	        'Hello I am the comment box.'
 	      ),
+	      /We have made these in the commentform and commentlist so we can now use these new components/,
 	      React.createElement(CommentList, { data: this.state.data }),
 	      React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit })
 	    );
@@ -19712,7 +19720,11 @@
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var Comment = __webpack_require__(163);
+	var Comment = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Comment\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	{
+	  /not sure how this is working, so it is taking in the data from Comment and returning the autho and the key. it is making it more dynamic rather than takin in sample data. /;
+	}
 	
 	var CommentList = React.createClass({
 	  displayName: 'CommentList',
@@ -19790,35 +19802,6 @@
 	});
 	
 	module.exports = CommentForm;
-
-/***/ },
-/* 163 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	
-	var Comment = React.createClass({
-	  displayName: 'Comment',
-	
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h2',
-	        null,
-	        this.props.author
-	      ),
-	      this.props.children
-	    );
-	  }
-	
-	});
-	
-	module.exports = Comment;
 
 /***/ }
 /******/ ]);

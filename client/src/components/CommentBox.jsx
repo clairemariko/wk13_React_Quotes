@@ -8,7 +8,7 @@ var CommentForm = require('./CommentForm.jsx');
     {id:3, author:'Beth', text:'heey'}
   ];
 
-
+{/The React.createClass has various methods we can pass to it such as the render which is important and this returns a tree of React components/}
   var CommentBox = React.createClass({
    getInitialState:function(){
     return {data: sampleData};
@@ -24,6 +24,7 @@ var CommentForm = require('./CommentForm.jsx');
     return (
       <div>
       <h4>Hello I am the comment box.</h4>
+      {/We have made these in the commentform and commentlist so we can now use these new components/}
       <CommentList data={this.state.data}/>
       <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
