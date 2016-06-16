@@ -19690,6 +19690,13 @@
 	    this.setState({ data: newComments });
 	  },
 	
+	  handleCommentDelete: function handleCommentDelete(id) {
+	    var filteredData = this.state.data.filter(function (comment) {
+	      return comment.id != id;
+	    });
+	    this.setState({ data: filteredData });
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -19699,7 +19706,7 @@
 	        null,
 	        'Hello I am the comment box.'
 	      ),
-	      React.createElement(CommentList, { data: this.state.data }),
+	      React.createElement(CommentList, { data: this.state.data, onCommentDelete: this.handleCommentDelete }),
 	      React.createElement(CommentForm, { onCommentSubmit: this.handleCommentSubmit })
 	    );
 	  }
@@ -19725,10 +19732,12 @@
 	    var commentNodes = this.props.data.map(function (comment) {
 	      return React.createElement(
 	        Comment,
-	        { author: comment.author, key: comment.id },
+	        { author: comment.author, key: comment.id, id: comment.id, onCommentDelete: this.props.onCommentDelete },
 	        comment.text
 	      );
-	    });
+	    }.bind(this));
+	
+	    //we had to use bind this and it being excuted within the mar that in an array so it lost what this is.
 	
 	    return React.createElement(
 	      'div',
@@ -19744,32 +19753,37 @@
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	var React = __webpack_require__(1);
 	
 	var Comment = React.createClass({
-	  displayName: 'Comment',
+	  displayName: "Comment",
 	
 	
 	  // {/Comments will depend on the data from it parent. Data passed from its parent is known as 'property' on the child component. Data passed from it parent is known as 'propert' on the child component./}
 	
 	  // {/We access named attributes passed to the component as keys on [this.props] and any nest element as [this.props.children] ??? not sure about this.props.children/}
 	
+	  handleDelete: function handleDelete() {
+	    console.log("button clicked", this.props);
+	    this.props.onCommentDelete(this.props.id);
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
-	      'div',
+	      "div",
 	      null,
 	      React.createElement(
-	        'h2',
+	        "h2",
 	        null,
 	        this.props.author
 	      ),
 	      this.props.children,
 	      React.createElement(
-	        'button',
-	        null,
-	        ' delete '
+	        "button",
+	        { onClick: this.handleDelete },
+	        " delete "
 	      )
 	    );
 	  }

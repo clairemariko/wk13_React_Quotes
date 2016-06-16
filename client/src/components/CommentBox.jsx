@@ -20,13 +20,21 @@ var CommentForm = require('./CommentForm.jsx');
     this.setState({data: newComments});
   },
 
+  handleCommentDelete:function(id){
+    var filteredData = this.state.data.filter(function(comment){
+      return comment.id != id
+    })
+    this.setState({data: filteredData});
+  },
+
   render: function(){
     return (
       <div>
       <h4>Hello I am the comment box.</h4>
-      
-      <CommentList data={this.state.data}/>
+
+      <CommentList data={this.state.data} onCommentDelete={this.handleCommentDelete}/>
       <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+
       </div>
      )
    }
